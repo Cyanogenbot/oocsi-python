@@ -192,11 +192,8 @@ class OOCSI:
     def handleEvent(self, sender, receiver, message):
         {}
 
-    def heyOOCSI(self, custom_name=None):
-        if custom_name is None:
-            return (OOCSIDevice(self, self.handle))
-        else:            
-            return (OOCSIDevice(self, custom_name))
+    def heyOOCSI(self, custom_name=self.handle):
+        return (OOCSIDevice(self, custom_name))
 
 
 
@@ -407,7 +404,7 @@ class OOCSIDevice():
     def submit(self):
         data = self._device
         self._oocsi.internalSend('sendraw {0} {1}'.format("heyOOCSI!", json.dumps(data))) 
-        self._oocsi.log("Sent heyOOCSI! message for device {self._device_name}.")
+        self._oocsi.log(f'Sent heyOOCSI! message for device {self._device_name}.')
     
     def sayHi(self):
         self.submit()
