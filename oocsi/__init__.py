@@ -319,6 +319,7 @@ class OOCSIVariable(object):
         return self
 
 
+    
 
 class OOCSIDevice():
     def __init__(self, OOCSI, device_name) -> None:
@@ -330,6 +331,7 @@ class OOCSIDevice():
         self._components = self._device[self._device_name]["components"]
         self._oocsi=OOCSI
         self._oocsi.log(f'Created device {self._device_name}.')
+        
 
     def add_property(self, properties, propertyValue):
         self._device[self._device_name]["properties"][properties] = propertyValue
@@ -388,6 +390,19 @@ class OOCSIDevice():
         return self
 
     def add_light_brick(self, light_name, light_channel, led_type, spectrum, light_default_state=False, light_default_brightness=0, mired_min_max=None, icon=None):
+        SPECTRUM = ["WHITE","CCT","RGB"]
+        LEDTYPE = ["RGB","RGBW","RGBWW","CCT","DIMMABLE","ONOFF"]
+
+        if led_type in LEDTYPE:  
+            if spectrum <= SPECTRUM:
+                self._components[light_name]["spectrum"] = spectrum
+            else:
+                self._oocsi.log(f'error, {light_name} spectrum does not exist.')
+                pass
+        else:
+            self._oocsi.log(f'error, {light_name} ledtype does not exist.')
+            pass
+
         self._components[light_name]={}
         self._components[light_name]["channel_name"] = light_channel
         self._components[light_name]["min_max"]= mired_min_max
