@@ -48,7 +48,7 @@ oocsi.send('colorChannel', {'color': 120})
 ```  
 
 ### Receiving messages
-Messages from OOCSI that are sent directly to thsi client (using the handle Alice in the example), can be received using a callback that is provided when connecting. In the example below, all direct messages to Alice are received through the callback handleDirectMessage. This callback method receives the sender of the message, the recipient (channel name) and the event data as arguments. 
+Messages from OOCSI that are sent directly to this client (using the handle Alice in the example), can be received using a callback that is provided when connecting. In the example below, all direct messages to Alice are received through the callback handleDirectMessage. This callback method receives the sender of the message, the recipient (channel name) and the event data as arguments. 
 
 ```python
 from oocsi import OOCSI
